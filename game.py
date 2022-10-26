@@ -6,7 +6,7 @@ from hangMan import stages
 
 def gameLogic():
     word = wordLoader.word.upper()
-    wordCompletion = wordLoader.wordBlanks()
+    wordCompletion = wordLoader.wordBlanks(wordLoader.word)
     guessed = False
     guessedLetters = []
     guessedWords = []
@@ -46,7 +46,8 @@ def gameLogic():
                 wordCompletion = word
         else:
             print("Not a valid input")
-        print("You now have", tries, "tries left")
+        if not guessed:
+            print("You now have", tries, "tries left")
         if tries == 0:
             print("The word was", word)
         else:

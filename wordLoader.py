@@ -10,7 +10,7 @@ if wordCat not in range(1, 3):
 
 # Chooses a random word from the text file of the category of words.
 
-def getWord():
+def getWord(wordCat):
     if wordCat == 1:
         file = open("movies.txt")
     elif wordCat == 2:
@@ -21,10 +21,10 @@ def getWord():
     word = random.choice(wordList)
     return word
 
-word = getWord()
+word = getWord(wordCat)
 # Converts the word into underscore form (except special symbols)
 
-def wordBlanks():
+def wordBlanks(word):
     wordDisplay = ''
     for char in word:
         if char.isalnum():
