@@ -1,5 +1,6 @@
 import random
 
+
 # Asks the user which category of words they want to play.
 
 wordCat = int(input("Welcome!\nPlease select the category of words you want to play.\n1. Movies\n2. Cars\n"))
@@ -20,12 +21,12 @@ def getWord():
     word = random.choice(wordList)
     return word
 
-
+word = getWord()
 # Converts the word into underscore form (except special symbols)
 
 def wordBlanks():
     wordDisplay = ''
-    for char in getWord():
+    for char in word:
         if char.isalnum():
             wordDisplay += '_'
         else:

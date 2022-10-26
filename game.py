@@ -5,7 +5,7 @@ from hangMan import stages
 # Main game function
 
 def gameLogic():
-    word = wordLoader.getWord().upper()
+    word = wordLoader.word.upper()
     wordCompletion = wordLoader.wordBlanks()
     guessed = False
     guessedLetters = []
@@ -34,7 +34,7 @@ def gameLogic():
                 wordCompletion = ''.join(wordAsList)
                 if '_' not in wordCompletion:
                     guessed = True
-        elif len(guess) == len(word) and guess.isalnum():
+        elif len(guess) == len(word):
             if guess in guessedWords:
                 print("You have already guessed this word")
             elif guess != word:

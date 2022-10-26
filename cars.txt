@@ -3,7 +3,7 @@ Honda
 Chevrolet
 Ford
 Mercedes-Benz
-Jeep2
+Jeep
 BMW
 Porsche
 Subaru
