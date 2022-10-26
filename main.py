@@ -1,4 +1,5 @@
 import game
+import wordLoader
 
 
 def main():
