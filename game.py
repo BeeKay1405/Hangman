@@ -48,6 +48,8 @@ def gameLogic():
             print("Not a valid input")
         if not guessed:
             print("You now have", tries, "tries left")
+            print("Letters guessed: ",guessedLetters)
+            print("Words guessed: ",guessedWords)
         if tries == 0:
             print("The word was", word)
         else:
