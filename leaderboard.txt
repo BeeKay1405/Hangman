@@ -1,0 +1,4 @@
+Akshat: 8
+Bhakshat: 13
+Fakshat: 1
+Anonymous: 20

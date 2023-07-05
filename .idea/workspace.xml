@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dec1ac80-fcf4-4569-8cb4-118e4c074928" name="Changes" comment="Added Difficulty Options">
+    <list default="true" id="dec1ac80-fcf4-4569-8cb4-118e4c074928" name="Changes" comment="Refined Code&#10;Now displays the category that the player is playing">
+      <change afterPath="$PROJECT_DIR$/leaderboard.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -58,7 +59,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688486116534</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Refined Code&#10;Now displays the category that the player is playing">
+      <created>1688487895241</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1688487895241</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -75,6 +83,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added More Categories" />
     <MESSAGE value="Added Difficulty Options" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Difficulty Options" />
+    <MESSAGE value="Refined Code&#10;Now displays the category that the player is playing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refined Code&#10;Now displays the category that the player is playing" />
   </component>
 </project>

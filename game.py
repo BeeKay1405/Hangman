@@ -6,7 +6,6 @@ from hangMan import stages
 def gameLogic():
     wordCat = wordLoader.selectCategory()
     categoryName = wordLoader.getCategoryName(wordCat)
-
     wordLoader.word = wordLoader.getWord(wordCat)
     word = wordLoader.word.upper()
     wordCompletion = wordLoader.wordBlanks(wordLoader.word)
@@ -14,6 +13,7 @@ def gameLogic():
     guessedLetters = []
     guessedWords = []
     tries = 6
+    print("Score: ", wordLoader.scoreLogic(0))
     print("Category: " + categoryName)
     print("You have", tries, "tries left")
     print(wordCompletion)
@@ -32,6 +32,7 @@ def gameLogic():
                 guessedLetters.append(guess)
             else:
                 print("Nice!", guess, "is in the word")
+                wordLoader.score = wordLoader.scoreLogic(1)
                 guessedLetters.append(guess)
                 wordAsList = list(wordCompletion)
                 indices = [i for i, letter in enumerate(word) if letter == guess]
@@ -52,10 +53,12 @@ def gameLogic():
             else:
                 guessed = True
                 wordCompletion = word
+                wordLoader.score = wordLoader.scoreLogic(2)
         else:
             print("Not a valid input")
 
         if not guessed:
+            print("Score: ", wordLoader.scoreLogic(0))
             print("Category:", categoryName)
             print("You now have", tries, "tries left")
             print("Letters guessed:", guessedLetters)
@@ -70,6 +73,8 @@ def gameLogic():
         print("\n")
 
     if guessed:
+        wordLoader.score = wordLoader.scoreLogic(3)
         print("Congratulations! You Win!")
+        print("Score: ", wordLoader.score)
     else:
-        print("Sorry, you lost. The word was:", word)
+        print("Sorry, you lost.")

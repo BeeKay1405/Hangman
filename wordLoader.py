@@ -1,3 +1,4 @@
+import game
 import random
 
 category = {
@@ -52,7 +53,7 @@ def getWord(wordCat):
 
     if not filteredWords[1] and not filteredWords[2] and not filteredWords[3]:
         print("No words available in this category.")
-        exit(1)
+        exit(2)
 
     if hardWords:
         difficulty = getDifficulty()
@@ -60,9 +61,17 @@ def getWord(wordCat):
         difficulty = getDifficulty()
         if difficulty == 3:
             print("No hard words available in this category.")
-            exit(1)
+            exit(3)
 
     return random.choice(filteredWords[difficulty])
+
+
+def playerName():
+    playerName = str(input("Please enter you Name or input 0 if you want to play anonymously:\n"))
+    if playerName == '0':
+        return 0
+    else:
+        return playerName
 
 
 def selectCategory():
@@ -95,3 +104,42 @@ def wordBlanks(word):
 
 def getCategoryName(wordCat):
     return category[wordCat]
+
+
+def scoreLogic(guessType):
+    global score
+    try:
+        score
+    except NameError:
+        score = 0
+    if guessType == 0:
+        pass
+    elif guessType == 1:
+        score += 1
+    elif guessType == 2:
+        score += 3
+    else:
+        score += 5
+
+    return score
+
+
+def writeLeaderboard(name, score):
+    if name != 0:
+        with open("leaderboard.txt", "a") as file:
+            file.write(f"{name}: {score}\n")
+    else:
+        with open("leaderboard.txt", "a") as file:
+            file.write(f"Anonymous: {score}\n")
+
+
+def printLeaderboard():
+    with open("leaderboard.txt", "r") as file:
+        leaderboard = file.readlines()
+
+    leaderboard = [line.strip().split(":") for line in leaderboard]
+    sorted_leaderboard = sorted(leaderboard, key=lambda x: int(x[1]) if len(x) >= 2 else 0, reverse=True)
+
+    print("Leaderboard:")
+    for entry in sorted_leaderboard:
+        print(f"Name: {entry[0]}, Score: {entry[1]}")
