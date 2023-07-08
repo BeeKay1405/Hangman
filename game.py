@@ -17,7 +17,7 @@ def gameLogic():
     print("Category: " + categoryName)
     print("You have", tries, "tries left")
     print(wordCompletion)
-    print(stages[tries])
+    print(stages[tries+1])
     print("\n")
 
     while not guessed and tries > 0:
@@ -58,6 +58,11 @@ def gameLogic():
             print("Not a valid input")
 
         if not guessed:
+            if (6 - tries) == 2 or (6 - tries) == 4:
+                hintChoice = input("Would you like a hint? (Y/N): ")
+                if hintChoice.upper() == 'Y':
+                    wordAsList, word = wordLoader.hint(list(wordCompletion), word, guessedLetters)
+                    wordCompletion = ''.join(wordAsList)
             print("Score: ", wordLoader.scoreLogic(0))
             print("Category:", categoryName)
             print("You now have", tries, "tries left")
@@ -69,7 +74,7 @@ def gameLogic():
         else:
             print(wordCompletion)
 
-        print(stages[tries])
+        print(stages[tries+1])
         print("\n")
 
     if guessed:

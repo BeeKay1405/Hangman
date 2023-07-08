@@ -51,22 +51,18 @@ def getWord(wordCat):
     hardWords = [word for word in wordList if len(word) > 10]
     filteredWords = {1: easyWords, 2: mediumWords, 3: hardWords}
 
-    if not filteredWords[1] and not filteredWords[2] and not filteredWords[3]:
-        print("No words available in this category.")
-        exit(2)
-
-    if hardWords:
+    while True:
         difficulty = getDifficulty()
-    else:
-        difficulty = getDifficulty()
-        if difficulty == 3:
-            print("No hard words available in this category.")
-            exit(3)
+        if difficulty == 3 and not hardWords:
+            print("No hard words available in this category. Please select another difficulty")
+            continue
+        else:
+            break
 
     return random.choice(filteredWords[difficulty])
 
 
-def playerName():
+def getPlayerName():
     playerName = str(input("Please enter you Name or input 0 if you want to play anonymously:\n"))
     if playerName == '0':
         return 0
@@ -138,8 +134,16 @@ def printLeaderboard():
         leaderboard = file.readlines()
 
     leaderboard = [line.strip().split(":") for line in leaderboard]
-    sorted_leaderboard = sorted(leaderboard, key=lambda x: int(x[1]) if len(x) >= 2 else 0, reverse=True)
+    sortedLeaderboard = sorted(leaderboard, key=lambda x: int(x[1]) if len(x) >= 2 else 0, reverse=True)
 
     print("Leaderboard:")
-    for entry in sorted_leaderboard:
+    for entry in sortedLeaderboard:
         print(f"Name: {entry[0]}, Score: {entry[1]}")
+
+
+def hint(wordAsList, word, guessedLetters):
+    indices = [i for i, char in enumerate(wordAsList) if char == '_']
+    index = random.choice(indices)
+    wordAsList[index] = word[index]
+    guessedLetters.append(word[index])
+    return wordAsList, word
