@@ -4,6 +4,8 @@ from hangMan import stages
 
 # Main game function
 def gameLogic():
+    hintFinish = False
+    hintCounter = 0
     wordCat = wordLoader.selectCategory()
     if wordCat == 9:
         categoryName = "Custom"
@@ -63,11 +65,16 @@ def gameLogic():
             print("Not a valid input")
 
         if not guessed:
-            if (6 - tries) == 2 or (6 - tries) == 4:
+            if ((6 - tries) == 2 and hintCounter == 0) or ((6 - tries) == 4 and hintCounter == 1):
                 hintChoice = input("Would you like a hint? (Y/N): ")
                 if hintChoice.upper() == 'Y':
+                    wordLoader.score -= 1
+                    hintCounter += 1
                     wordAsList, word = wordLoader.hint(list(wordCompletion), word, guessedLetters)
                     wordCompletion = ''.join(wordAsList)
+                    if wordCompletion == word:
+                        guessed = True
+                        hintFinish = True
             print("Score: ", wordLoader.scoreLogic(0))
             print("Category:", categoryName)
             print("You now have", tries, "tries left")
@@ -81,6 +88,9 @@ def gameLogic():
 
         print(stages[tries+1])
         print("\n")
+
+    if hintFinish:
+        wordLoader.score -= 5
 
     if guessed:
         wordLoader.score = wordLoader.scoreLogic(3)

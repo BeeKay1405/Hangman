@@ -145,7 +145,9 @@ def printLeaderboard():
 def hint(wordAsList, word, guessedLetters):
     indices = [i for i, char in enumerate(wordAsList) if char == '_']
     index = random.choice(indices)
-    wordAsList[index] = word[index]
+    letterIndices = [i for i, char in enumerate(word) if char == word[index]]
+    for letterIndex in letterIndices:
+        wordAsList[letterIndex] = word[letterIndex]
     guessedLetters.append(word[index])
     return wordAsList, word
 
