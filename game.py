@@ -5,9 +5,14 @@ from hangMan import stages
 # Main game function
 def gameLogic():
     wordCat = wordLoader.selectCategory()
-    categoryName = wordLoader.getCategoryName(wordCat)
-    wordLoader.word = wordLoader.getWord(wordCat)
-    word = wordLoader.word.upper()
+    if wordCat == 9:
+        categoryName = "Custom"
+        word = wordLoader.multiplayer().upper()
+        wordLoader.word = word
+    else:
+        categoryName = wordLoader.getCategoryName(wordCat)
+        wordLoader.word = wordLoader.getWord(wordCat)
+        word = wordLoader.word.upper()
     wordCompletion = wordLoader.wordBlanks(wordLoader.word)
     guessed = False
     guessedLetters = []

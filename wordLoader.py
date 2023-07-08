@@ -1,4 +1,3 @@
-import game
 import random
 
 category = {
@@ -9,7 +8,8 @@ category = {
     5: "Fruits",
     6: "Movies",
     7: "Professions",
-    8: "Sports"
+    8: "Sports",
+    9: "Multiplayer"
 }
 
 
@@ -79,7 +79,8 @@ def selectCategory():
                         "\n5. Fruits"
                         "\n6. Movies"
                         "\n7. Professions"
-                        "\n8. Sports\n"))
+                        "\n8. Sports"
+                        "\n9. Multiplayer\n"))
 
     if wordCat not in category:
         print("Invalid category selection!")
@@ -147,3 +148,8 @@ def hint(wordAsList, word, guessedLetters):
     wordAsList[index] = word[index]
     guessedLetters.append(word[index])
     return wordAsList, word
+
+
+def multiplayer():
+    userWord = input("Enter the word you want the other player to guess. (Ask them to look away!)\n")
+    return userWord
