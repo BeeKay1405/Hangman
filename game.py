@@ -65,7 +65,7 @@ def gameLogic():
             print("Not a valid input")
 
         if not guessed:
-            if ((6 - tries) == 2 and hintCounter == 0) or ((6 - tries) == 4 and hintCounter == 1):
+            if ((6 - tries) == 2 and hintCounter == 0) or ((6 - tries) == 4 and hintCounter <= 1):
                 hintChoice = input("Would you like a hint? (Y/N): ")
                 if hintChoice.upper() == 'Y':
                     wordLoader.score -= 1
