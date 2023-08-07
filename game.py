@@ -1,45 +1,51 @@
-import wordLoader
+import sqlite3
+import functions
+import os
+import time
 from hangMan import stages
+conn = sqlite3.connect('hangman.db')
 
 
 # Main game function
 def gameLogic():
     hintFinish = False
     hintCounter = 0
-    wordCat = wordLoader.selectCategory()
+    wordCat = functions.selectCategory()
     if wordCat == 9:
         categoryName = "Custom"
-        word = wordLoader.multiplayer().upper()
-        wordLoader.word = word
+        functions.word = functions.multiplayer().upper()
+        word = functions.word.upper()
     else:
-        categoryName = wordLoader.getCategoryName(wordCat)
-        wordLoader.word = wordLoader.getWord(wordCat)
-        word = wordLoader.word.upper()
-    wordCompletion = wordLoader.wordBlanks(wordLoader.word)
+        categoryName = functions.getCategoryName(wordCat)
+        functions.word = functions.getWord(wordCat,conn)
+        word = functions.word.upper()
+    wordCompletion = functions.wordBlanks(functions.word)
     guessed = False
     guessedLetters = []
     guessedWords = []
     tries = 6
-    print("Score: ", wordLoader.scoreLogic(0))
-    print("Category: " + categoryName)
-    print("You have", tries, "tries left")
-    print(wordCompletion)
-    print(stages[tries+1])
+    os.system('cls')
+    print("Score: ", functions.yellow + str(functions.scoreLogic(0)) + functions.white)
+    print("Category: ", functions.yellow + categoryName + functions.white)
+    print("You have", functions.yellow + str(tries) + functions.white, "tries left")
+    print(functions.yellow + wordCompletion + functions.white)
+    print(functions.blue + stages[tries] + functions.white)
+    startTime = time.time()
     print("\n")
 
     while not guessed and tries > 0:
-        guess = input("Please guess a letter or a word: ").upper()
+        guess = input(functions.green + "Please guess a letter or a word: " + functions.white).upper()
 
         if len(guess) == 1 and guess.isalnum():  # Logic for when the player guesses a letter
             if guess in guessedLetters:
-                print("You already guessed the letter", guess)
+                print(functions.red + "You already guessed the letter", guess + functions.white)
             elif guess not in word:
-                print(guess, "is not in the word")
+                print(functions.red + guess, "is not in the word" + functions.white)
                 tries -= 1
                 guessedLetters.append(guess)
             else:
-                print("Nice!", guess, "is in the word")
-                wordLoader.score = wordLoader.scoreLogic(1)
+                print(functions.green + "Nice!", guess, "is in the word" + functions.white)
+                functions.score = functions.scoreLogic(1)
                 guessedLetters.append(guess)
                 wordAsList = list(wordCompletion)
                 indices = [i for i, letter in enumerate(word) if letter == guess]
@@ -52,49 +58,53 @@ def gameLogic():
                     guessed = True
         elif len(guess) == len(word):  # Logic for when the player guesses a word
             if guess in guessedWords:
-                print("You have already guessed this word")
+                print(functions.red + "You have already guessed this word" + functions.white)
             elif guess != word:
-                print(guess, "is not the word")
+                print(functions.red + guess, "is not the word" + functions.white)
                 tries -= 1
                 guessedWords.append(guess)
             else:
                 guessed = True
                 wordCompletion = word
-                wordLoader.score = wordLoader.scoreLogic(2)
+                functions.score = functions.scoreLogic(2)
         else:
-            print("Not a valid input")
+            print(functions.red + "Not a valid input" + functions.white)
 
         if not guessed:
             if ((6 - tries) == 2 and hintCounter == 0) or ((6 - tries) == 4 and hintCounter <= 1):
-                hintChoice = input("Would you like a hint? (Y/N): ")
+                hintChoice = input(functions.green + "Would you like a hint? (Y/N): " + functions.white)
+                hintCounter += 1
                 if hintChoice.upper() == 'Y':
-                    wordLoader.score -= 1
-                    hintCounter += 1
-                    wordAsList, word = wordLoader.hint(list(wordCompletion), word, guessedLetters)
+                    functions.score -= 1
+                    wordAsList, word = functions.hint(list(wordCompletion), word, guessedLetters)
                     wordCompletion = ''.join(wordAsList)
                     if wordCompletion == word:
                         guessed = True
                         hintFinish = True
-            print("Score: ", wordLoader.scoreLogic(0))
-            print("Category:", categoryName)
-            print("You now have", tries, "tries left")
-            print("Letters guessed:", guessedLetters)
-            print("Words guessed:", guessedWords)
+            os.system('cls')
+            print("Score: ", functions.yellow + str(functions.scoreLogic(0)) + functions.white)
+            print("Category:", functions.yellow + categoryName + functions.white)
+            print("You now have", functions.yellow + str(tries) + functions.white, "tries left")
+            print("Letters guessed:", functions.yellow + str(guessedLetters) + functions.white)
+            print("Words guessed:", functions.yellow + str(guessedWords) + functions.white)
 
         if tries == 0:
-            print("The word was", word)
+            print(functions.green + "The word was", functions.yellow + word + functions.white)
         else:
-            print(wordCompletion)
+            print(functions.yellow + wordCompletion + functions.white)
 
-        print(stages[tries+1])
+        print(functions.blue + stages[tries] + functions.white)
         print("\n")
 
     if hintFinish:
-        wordLoader.score -= 5
+        functions.score -= 5
 
     if guessed:
-        wordLoader.score = wordLoader.scoreLogic(3)
-        print("Congratulations! You Win!")
-        print("Score: ", wordLoader.score)
+        endTime = time.time()
+        timeTaken = endTime - startTime
+        functions.score = functions.scoreLogic(3)
+        print(functions.green + "Congratulations! You Win!" + functions.white)
+        print("Score: ", functions.yellow + str(functions.score) + functions.white)
+        print("Time Taken: ", functions.yellow + functions.timer(timeTaken) + functions.white)
     else:
-        print("Sorry, you lost.")
+        print(functions.red + "Sorry, you lost." + functions.white)

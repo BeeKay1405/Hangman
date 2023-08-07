@@ -3,16 +3,16 @@
 # Description: A simple Hangman game implementation in Python.
 
 import game
-import wordLoader
+import functions
 
 
 def main():
     while True:
         game.gameLogic()
-        playAgain = input("Do you want to play again? (Y/N): ")
+        playAgain = input(functions.green + "Do you want to play again? (Y/N): ")
         if playAgain.upper() != "Y":
-            wordLoader.writeLeaderboard(wordLoader.getPlayerName(), wordLoader.score)
-            wordLoader.printLeaderboard()
+            functions.writeLeaderboard(functions.getPlayerName(), functions.score)
+            functions.printLeaderboard()
             break
 
 

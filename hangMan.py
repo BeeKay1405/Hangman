@@ -1,5 +1,5 @@
 # Stages of the hanging man corresponding to number of tries
-stages = ['',
+stages = [
           R'''
     ____________
     |     |
