@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dec1ac80-fcf4-4569-8cb4-118e4c074928" name="Changes" comment="Added an SQL database for storing words">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hangman.db" beforeDir="false" afterPath="$PROJECT_DIR$/hangman.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/sql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animals.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cars.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/colours.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/countries.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fruits.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leaderboard.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/professions.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sports.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +29,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2JogTNraFNb5i6q0iXoYo6sTA3n" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
