@@ -1,4 +1,6 @@
 import random
+import sqlite3
+import sql
 
 yellow = '\033[33m'
 green = '\033[32m'
@@ -30,9 +32,9 @@ fileNames = {
 }
 
 difficulties = {
-    1: 'Easy',
-    2: 'Medium',
-    3: 'Hard'
+    1: 'easy',
+    2: 'medium',
+    3: 'hard'
 }
 
 
@@ -74,7 +76,7 @@ def getWord(wordCat, conn):
             wordCount = cursor.execute("SELECT COUNT(*) FROM WORDS WHERE category = ? AND difficulty = ?",
                                        (category, difficulties[difficulty],), ).fetchall()
 
-            if not wordCount:
+            if wordCount == [(0,)]:
                 print(red + "This difficulty of words is not available in this category. "
                             "Please select another difficulty" + white)
                 continue
@@ -128,7 +130,7 @@ def getCategoryName(wordCat):
     return categories[wordCat]
 
 
-def scoreLogic(guessType):
+def scoreLogic(guessType, timeTaken=0):
     global score
     try:
         score
@@ -142,29 +144,41 @@ def scoreLogic(guessType):
         score += 3
     else:
         score += 5
-
+    if guessType == 4:
+        if timeTaken <= 10:
+            score += 5
+        elif timeTaken <= 30:
+            score += 3
+        elif timeTaken <= 60:
+            score += 1
     return score
 
 
 def writeLeaderboard(name, score):
-    if name != 0:
-        with open("leaderboard.txt", "a") as file:
-            file.write(f"{name}: {score}\n")
-    else:
-        with open("leaderboard.txt", "a") as file:
-            file.write(f"Anonymous: {score}\n")
+    global word
+    sql.insertLeaderboard(name, word, score)
 
 
 def printLeaderboard():
-    with open("leaderboard.txt", "r") as file:
-        leaderboard = file.readlines()
+    conn = sqlite3.connect('hangman.db')
+    cursor = conn.cursor()
 
-    leaderboard = [line.strip().split(":") for line in leaderboard]
-    sortedLeaderboard = sorted(leaderboard, key=lambda x: int(x[1]) if len(x) >= 2 else 0, reverse=True)
+    cursor.execute("SELECT name, word, score FROM LEADERBOARD ORDER BY score DESC")
+    leaderboardData = cursor.fetchall()
 
-    print(yellow + "Leaderboard:")
-    for entry in sortedLeaderboard:
-        print(f"Name: {entry[0]}, Score: {entry[1]}")
+    if not leaderboardData:
+        print("Leaderboard is empty.")
+        return
+
+    print("Leaderboard:")
+    print("{:<20} {:<20} {:<10}".format("Name", "Word", "Score"))
+    print("=" * 50)
+
+    for row in leaderboardData:
+        name, word, score = row
+        print("{:<20} {:<20} {:<10}".format(name, word, score))
+
+    conn.close()
 
 
 def hint(wordAsList, word, guessedLetters):
@@ -180,13 +194,3 @@ def hint(wordAsList, word, guessedLetters):
 def multiplayer():
     userWord = input(green + "Enter the word you want the other player to guess. (Ask them to look away!)\n")
     return userWord
-
-
-def timer(timeTaken):
-    timeFormat = str(int(timeTaken) % 60)
-    a = str((int(timeTaken) % 3600) // 60)
-    if int(timeTaken) >= 60:
-        timeFormat = str((int(timeTaken) % 3600) // 60) + ':' + timeFormat
-    if int(timeTaken) >= 3600:
-        timeFormat = str(int(timeTaken) // 3600) + ':' + timeFormat
-    return timeFormat

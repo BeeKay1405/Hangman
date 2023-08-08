@@ -17,7 +17,7 @@ def gameLogic():
         word = functions.word.upper()
     else:
         categoryName = functions.getCategoryName(wordCat)
-        functions.word = functions.getWord(wordCat,conn)
+        functions.word = functions.getWord(wordCat, conn)
         word = functions.word.upper()
     wordCompletion = functions.wordBlanks(functions.word)
     guessed = False
@@ -101,10 +101,11 @@ def gameLogic():
 
     if guessed:
         endTime = time.time()
-        timeTaken = endTime - startTime
+        timeTaken = int(endTime - startTime)
         functions.score = functions.scoreLogic(3)
+        functions.score = functions.scoreLogic(4, timeTaken)
         print(functions.green + "Congratulations! You Win!" + functions.white)
         print("Score: ", functions.yellow + str(functions.score) + functions.white)
-        print("Time Taken: ", functions.yellow + functions.timer(timeTaken) + functions.white)
+        print("Time Taken: ", functions.yellow + str(timeTaken) + functions.white)
     else:
         print(functions.red + "Sorry, you lost." + functions.white)

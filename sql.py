@@ -5,7 +5,7 @@ conn = sqlite3.connect('hangman.db')
 cursor = conn.cursor()
 
 """
-# Create the Words table
+# Create the WORDS table
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS WORDS (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,7 +14,18 @@ cursor.execute('''
         difficulty TEXT
     )
 ''')
+
+# Create the LEADERBOARD table
+cursor.execute('''
+    CREATE TABLE LEADERBOARD (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        word TEXT,
+        score INTEGER
+    )    
+''')
 """
+
 
 # Insert words in table
 def insertWords(conn, filePath, category):
@@ -25,7 +36,7 @@ def insertWords(conn, filePath, category):
         cursor = conn.cursor()
 
         for index, word in enumerate(words, start=11):
-            cursor.execute("INSERT INTO Words (category, word) VALUES (?, ?)", (category, word))
+            cursor.execute("INSERT INTO WORDS (category, word) VALUES (?, ?)", (category, word))
 
         conn.commit()
         print(f"Words from {filePath} inserted successfully.")
@@ -70,6 +81,15 @@ def updateDifficulty(conn):
 
 
 """updateDifficulty(conn)"""
+
+
+# Insert data into Leaderboard
+def insertLeaderboard(name, word, score):
+    conn = sqlite3.connect('hangman.db')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO LEADERBOARD (name, word, score) VALUES (?, ?, ?)",
+                   (name, word, score))
+    conn.commit()
 
 # Commit the changes and close the connection
 conn.commit()
