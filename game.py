@@ -97,7 +97,7 @@ def gameLogic():
         print("\n")
 
     if hintFinish:
-        functions.score -= 5
+        functions.score -= 20
 
     if guessed:
         endTime = time.time()
