@@ -142,15 +142,17 @@ def scoreLogic(guessType, timeTaken=0):
         score += 1
     elif guessType == 2:
         score += 3
-    else:
+    elif guessType == 3:
         score += 5
-    if guessType == 4:
+    elif guessType == 4:
         if timeTaken <= 10:
             score += 5
         elif timeTaken <= 30:
             score += 3
         elif timeTaken <= 60:
             score += 1
+    else:
+        pass
     return score
 
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -12,8 +12,8 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="3ad0ff0b-ba7c-4cd1-a181-852ec322b7af">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+    <connection id="0928e592-bfb2-4cfa-9147-1e6fc88d4c13">
+      <console name="hangman" type="STANDARD" schema="hangman" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -22,39 +22,63 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="0928e592-bfb2-4cfa-9147-1e6fc88d4c13" dataset="hangman.WORDS" active-filter-id="" />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
+  </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$" connection-id="3ad0ff0b-ba7c-4cd1-a181-852ec322b7af" session-id="MAIN" current-schema="" />
+    <mapping file-url="file://$PROJECT_DIR$/hangman.db" connection-id="" session-id="" current-schema="" />
+  </component>
+  <component name="DBNavigator.Project.MethodExecutionManager">
+    <method-browser />
+    <execution-history>
+      <group-entries value="true" />
+      <execution-inputs />
+    </execution-history>
+    <argument-values-cache />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces />
+  </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="3ad0ff0b-ba7c-4cd1-a181-852ec322b7af" active="true" signed="true">
+      <connection id="0928e592-bfb2-4cfa-9147-1e6fc88d4c13" active="true" signed="true">
         <database>
-          <name value="Connection" />
+          <name value="hangman" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="3.41" />
           <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />
-          <url-type value="CUSTOM" />
-          <url value="sqlite.db" />
+          <url-type value="FILE" />
+          <host value="" />
+          <port value="" />
+          <database value="" />
+          <tns-folder value="" />
+          <tns-profile value="" />
+          <files>
+            <file path="C:\Users\apook\PycharmProjects\Hangman\hangman.db" schema="hangman" />
+          </files>
           <type value="NONE" />
           <user value="" />
           <deprecated-pwd value="" />
         </database>
         <properties>
-          <auto-commit value="false" />
+          <auto-commit value="true" />
         </properties>
         <ssh-settings>
-          <active value="true" />
-          <proxy-host value="localhost" />
-          <proxy-port value="3306" />
-          <proxy-user value="aksha" />
+          <active value="false" />
+          <proxy-host value="" />
+          <proxy-port value="22" />
+          <proxy-user value="" />
           <deprecated-proxy-pwd value="" />
           <auth-type value="PASSWORD" />
           <key-file value="" />
@@ -82,6 +106,13 @@
           <max-connection-pool-size value="7" />
           <alternative-statement-delimiter value="" />
         </details>
+        <debugger>
+          <compile-dependencies value="true" />
+          <tcp-driver-tunneling value="false" />
+          <tcp-host-address value="" />
+          <tcp-port-from value="4000" />
+          <tcp-port-to value="4999" />
+        </debugger>
         <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
           <object-type-filter>
             <object-type name="SCHEMA" enabled="true" />
@@ -460,7 +491,6 @@
       </compiler>
       <debugger>
         <debugger-type value="JDBC" />
-        <use-generic-runners value="true" />
       </debugger>
     </operation-settings>
     <ddl-file-settings>
@@ -507,5 +537,9 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
+    <execution-variable-types />
   </component>
 </project>

@@ -1,0 +1,20 @@
+Football
+Basketball
+Tennis
+Baseball
+Golf
+Swimming
+Rugby
+Volleyball
+Cricket
+Badminton
+Table Tennis
+Ice Hockey
+Cycling
+Boxing
+Skiing
+Wrestling
+Gymnastics
+Track and Field
+Rowing
+Sailing
