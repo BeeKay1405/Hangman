@@ -13,6 +13,7 @@ def main():
         if playAgain.upper() != "Y":
             functions.writeLeaderboard(functions.getPlayerName(), functions.score)
             functions.printLeaderboard()
+            a = input()
             break
 
 

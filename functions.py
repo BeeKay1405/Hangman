@@ -92,7 +92,7 @@ def getWord(wordCat, conn):
 def getPlayerName():
     playerName = str(input(green + "Please enter you name or input 0 if you want to play anonymously:\n" + white))
     if playerName == '0':
-        return 0
+        return 'Anonymous'
     else:
         return playerName
 

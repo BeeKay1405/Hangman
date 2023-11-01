@@ -91,6 +91,7 @@ def insertLeaderboard(name, word, score):
                    (name, word, score))
     conn.commit()
 
+
 # Commit the changes and close the connection
 conn.commit()
 conn.close()
